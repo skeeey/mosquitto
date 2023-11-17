@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+  labels:
+    app.kubernetes.io/name: mosquitto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mosquitto
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mosquitto
+    spec:
+      serviceAccountName: mosquitto
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:2.0.18
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+          ports:
+            - name: tls
+              containerPort: 8883
+              protocol: TCP
+          volumeMounts:
+            - name: configmap
+              mountPath: /mosquitto/config
+            - name: mosquitto-certs
+              mountPath: /mosquitto/certs
+            - name: mosquitto-acls
+              mountPath: /mosquitto/acls
+      volumes:
+        - name: configmap
+          configMap:
+            name: mosquitto
+        - name: mosquitto-certs
+          secret:
+            secretName: mosquitto-certs
+        - name: mosquitto-acls
+          configMap:
+            name: mosquitto-acls

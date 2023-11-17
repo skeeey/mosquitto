@@ -1,0 +1,25 @@
+# Adds namespace to all resources.
+namespace:  mosquitto
+
+resources:
+- ./namespace.yaml
+- ./configmap.dynamic-security.yaml
+- ./configmap.mosquitto.yaml
+- ./serviceaccount.yaml
+- ./deployment.yaml
+- ./service.yaml
+- ./route.yaml
+
+images:
+- name: eclipse-mosquitto:2.0.18
+  newName: eclipse-mosquitto
+  newTag: 2.0.18
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+secretGenerator:
+- name: mosquitto-certs
+  files:
+  - root-ca.pem
+  - server.pem
+  - server-key.pem
