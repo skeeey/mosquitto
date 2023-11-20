@@ -26,8 +26,8 @@ const (
 
 func main() {
 	caPath := flag.String("ca-path", path.Join(certPath, "root-ca.pem"), "The ca path")
-	clientCertPath := flag.String("client-cert-path", path.Join(certPath, "cluster1", "client.pem"), "The client cert path")
-	clientKeyPath := flag.String("client-key-path", path.Join(certPath, "cluster1", "client-key.pem"), "The client key path")
+	clientCertPath := flag.String("client-cert-path", path.Join(certPath, "admin", "client.pem"), "The client cert path")
+	clientKeyPath := flag.String("client-key-path", path.Join(certPath, "admin", "client-key.pem"), "The client key path")
 	host := flag.String("host", route, "The mqtt host")
 	flag.Parse()
 

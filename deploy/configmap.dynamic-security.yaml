@@ -6,4 +6,4 @@ metadata:
     app.kubernetes.io/name: mosquitto
 data:
   dynamic-security.json: |
-    {"clients":[{"username":"cluster1","roles":[{"rolename":"admin"}]},{"username":"cluster2","roles":[{"rolename":"admin"}]}],"roles":[{"rolename":"admin","acls":[{"acltype":"publishClientSend","topic":"#","allow":true},{"acltype":"publishClientReceive","topic":"#","allow":true},{"acltype":"subscribePattern","topic":"#","allow":true},{"acltype":"unsubscribePattern","topic":"#","allow":true}]}],"defaultACLAccess":{"publishClientSend":false,"publishClientReceive":true,"subscribe":false,"unsubscribe":true}}
+    {"clients":[{"username":"admin","roles":[{"rolename":"admin"}]}],"roles":[{"rolename":"admin","acls":[{"acltype":"publishClientSend","topic":"#","allow":true},{"acltype":"publishClientReceive","topic":"#","allow":true},{"acltype":"subscribePattern","topic":"#","allow":true},{"acltype":"unsubscribePattern","topic":"#","allow":true}]}],"defaultACLAccess":{"publishClientSend":false,"publishClientReceive":true,"subscribe":false,"unsubscribe":true}}

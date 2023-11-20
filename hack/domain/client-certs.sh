@@ -10,7 +10,7 @@ service="mosquitto"
 route="mosquitto"
 domain=apps.server-foundation-sno-r8b9r.dev04.red-chesterfield.com
 
-cluster_name="cluster2"
+cluster_name="admin"
 
 cluster_cert_dir=${CERT_DIR}/$cluster_name
 
